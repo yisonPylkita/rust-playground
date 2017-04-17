@@ -30,6 +30,21 @@ impl RPNCalculator {
         self.operands.push(operand_a - operand_b);
     }
 
+    fn multiply(&mut self) {
+        assert!(self.operands.len() >= 2);
+        let operand_a = self.operands.pop().unwrap();
+        let operand_b = self.operands.pop().unwrap();
+        self.operands.push(operand_a * operand_b);
+    }
+
+    fn divide(&mut self) {
+        assert!(self.operands.len() >= 2);
+        let operand_a = self.operands.pop().unwrap();
+        let operand_b = self.operands.pop().unwrap();
+        assert!(operand_b != 0);
+        self.operands.push(operand_a / operand_b);
+    }
+
     fn result(&self) -> i32 {
         assert!(self.operands.len() != 0);
         *(self.operands.last().unwrap())
@@ -55,6 +70,10 @@ fn main() {
             rpn_calc.add();
         } else if token.eq("-") {
             rpn_calc.substract();
+        } else if token.eq("*") {
+            rpn_calc.multiply();
+        } else if token.eq("/") {
+            rpn_calc.divide();
         } else {
             match token.parse::<i32>() {
                 Ok(operand) => rpn_calc.push_operand(operand),
