@@ -1,0 +1,8 @@
+[package]
+name = "flame"
+version = "0.1.0"
+authors = ["Wojciech Bartnik <wojciech.bartnik.ext@wincor-nixdorf.com>"]
+build = "build.rs"
+
+[dependencies]
+sdl2 = "0.29.1"
